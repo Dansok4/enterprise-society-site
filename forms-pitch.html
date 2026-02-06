@@ -7,6 +7,7 @@
   <meta name="description" content="Register interest for Pitch & Feedback Night." />
   <link rel="stylesheet" href="forms-shared.css">
 </head>
+
 <body>
   <main class="wrap">
     <div class="topbar">
@@ -19,20 +20,33 @@
       <p>Low pressure. High signal feedback. New connections.</p>
 
       <form action="https://formspree.io/f/xpqjzqzn" method="POST">
+        <!-- Formspree metadata -->
         <input type="hidden" name="_redirect" value="https://dansok4.github.io/enterprise-society-site/thanks.html">
-<input type="hidden" name="form_type" value="Pitch & Feedback Night">
-<input type="hidden" name="source" value="Enterprise Society website">
-        <input type="hidden" name="track" value="Pitch & Feedback Night" />
-        
+        <input type="hidden" name="form_type" value="Pitch & Feedback Night">
+        <input type="hidden" name="source" value="Enterprise Society website">
+        <input type="hidden" name="track" value="Pitch & Feedback Night">
 
         <div class="row">
           <div>
             <label for="name">Full name</label>
-            <input id="name" name="name" type="text" required placeholder="Your name" />
+            <input
+              id="name"
+              name="name"
+              type="text"
+              required
+              placeholder="Your name"
+            />
           </div>
+
           <div>
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" required placeholder="you@email.com" />
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="you@email.com"
+            />
           </div>
         </div>
 
@@ -46,26 +60,41 @@
               <option>Just attending</option>
             </select>
           </div>
+
           <div>
             <label for="topic">Pitch topic (optional)</label>
-            <input id="topic" name="topic" type="text" placeholder="E.g. marketplace app, tutoring platform…" />
+            <input
+              id="topic"
+              name="topic"
+              type="text"
+              placeholder="E.g. marketplace app, tutoring platform…"
+            />
           </div>
         </div>
 
-        <label for="note">What feedback do you want? (optional)</label>
-        <textarea id="note" name="note" rows="4" placeholder="Pricing, validation, product, go-to-market, etc."></textarea>
+        <div>
+          <label for="note">What feedback do you want? (optional)</label>
+          <textarea
+            id="note"
+            name="note"
+            rows="4"
+            placeholder="Pricing, validation, product, go-to-market, etc."
+          ></textarea>
+        </div>
 
         <div class="actions">
-          
+          <button class="btn primary" type="submit">Submit</button>
           <a class="btn" href="signup.html">General updates</a>
         </div>
 
-        <p class="small">By submitting, you consent to be contacted about this event and related updates.</p>
-        <button class="btn primary" type="submit">Submit</button>
+        <p class="small">
+          By submitting, you consent to be contacted about this event and related updates.
+        </p>
       </form>
     </section>
   </main>
 </body>
 </html>
+
 
 
