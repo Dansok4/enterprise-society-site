@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Founder Deep Dives | Interest Form</title>
+  <link rel="stylesheet" href="forms-shared.css">
+</head>
+<body>
+  <main class="wrap">
+    <div class="topbar">
+      <a class="btn" href="index.html#events">← Back</a>
+      <span class="pill">Talk</span>
+    </div>
+
+    <section class="card">
+      <h1>Founder Deep Dives</h1>
+      <p>Register interest to get the next invite + speaker details.</p>
+
+      <form name="interest-founder-deep-dives" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+        <input type="hidden" name="form-name" value="interest-founder-deep-dives" />
+        <input type="hidden" name="track" value="Founder Deep Dives" />
+        <p style="display:none;"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+
+        <div class="row">
+          <div>
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" required placeholder="Your name" />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@email.com" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="year">Year of study</label>
+            <select id="year" name="year" required>
+              <option value="" disabled selected>Select…</option>
+              <option>Foundation</option><option>Year 1</option><option>Year 2</option><option>Year 3</option><option>Postgraduate</option><option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="role">What best describes you?</label>
+            <select id="role" name="role" required>
+              <option value="" disabled selected>Select…</option>
+              <option>Aspiring founder</option>
+              <option>Operator (product/marketing/ops)</option>
+              <option>Just exploring</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="note">Question for speakers / topics (optional)</label>
+        <textarea id="note" name="note" rows="4" placeholder="What would you want founders/operators to cover?"></textarea>
+
+        <div class="actions">
+          <button class="btn primary" type="submit">Submit</button>
+          <a class="btn" href="signup.html">General updates</a>
+        </div>
+
+        <p class="small">By submitting, you consent to be contacted about this format and related updates.</p>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

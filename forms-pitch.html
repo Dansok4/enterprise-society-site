@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pitch & Feedback Night | Interest Form</title>
+  <meta name="description" content="Register interest for Pitch & Feedback Night." />
+  <link rel="stylesheet" href="forms-shared.css">
+</head>
+<body>
+  <main class="wrap">
+    <div class="topbar">
+      <a class="btn" href="index.html#events">← Back</a>
+      <span class="pill">Pitch</span>
+    </div>
+
+    <section class="card">
+      <h1>Pitch & Feedback Night</h1>
+      <p>Low pressure. High signal feedback. New connections.</p>
+
+      <form name="interest-pitch-feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+        <input type="hidden" name="form-name" value="interest-pitch-feedback" />
+        <input type="hidden" name="track" value="Pitch & Feedback Night" />
+        <p style="display:none;"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+
+        <div class="row">
+          <div>
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" required placeholder="Your name" />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@email.com" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="participation">How do you want to participate?</label>
+            <select id="participation" name="participation" required>
+              <option value="" disabled selected>Select…</option>
+              <option>Pitching</option>
+              <option>Giving feedback</option>
+              <option>Just attending</option>
+            </select>
+          </div>
+          <div>
+            <label for="topic">Pitch topic (optional)</label>
+            <input id="topic" name="topic" type="text" placeholder="E.g. marketplace app, tutoring platform…" />
+          </div>
+        </div>
+
+        <label for="note">What feedback do you want? (optional)</label>
+        <textarea id="note" name="note" rows="4" placeholder="Pricing, validation, product, go-to-market, etc."></textarea>
+
+        <div class="actions">
+          <button class="btn primary" type="submit">Submit</button>
+          <a class="btn" href="signup.html">General updates</a>
+        </div>
+
+        <p class="small">By submitting, you consent to be contacted about this event and related updates.</p>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

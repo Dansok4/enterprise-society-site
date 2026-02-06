@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Up | Enterprise Society</title>
+  <meta name="description" content="Sign up for Enterprise Society updates and events." />
+  <style>
+    :root{
+      --card: rgba(255,255,255,0.06);
+      --stroke: rgba(255,255,255,0.12);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --soft: rgba(255,255,255,0.56);
+      --shadow: 0 18px 50px rgba(0,0,0,0.55);
+      --radius: 18px;
+      --max: 780px;
+    }
+    *{ box-sizing:border-box; }
+    html,body{
+      margin:0; padding:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial;
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(59,130,246,0.18), transparent 55%),
+        radial-gradient(1000px 700px at 85% 15%, rgba(34,197,94,0.14), transparent 60%),
+        linear-gradient(180deg, #0a0f1d 0%, #070b14 60%, #05070d 100%);
+      color: var(--text);
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 26px; }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+    h1{ margin: 0 0 8px; font-size: 28px; letter-spacing:-0.4px; }
+    p{ margin: 0 0 14px; color: var(--muted); line-height:1.6; }
+    label{ display:block; font-size: 13px; color: var(--soft); margin: 12px 0 6px; }
+    input, select, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.18);
+      color: var(--text);
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(59,130,246,0.55);
+      box-shadow: 0 0 0 4px rgba(59,130,246,0.14);
+    }
+    .row{ display:grid; grid-template-columns: 1fr; gap: 12px; }
+    @media (min-width: 720px){ .row{ grid-template-columns: 1fr 1fr; } }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 14px;
+      cursor:pointer;
+    }
+    .btn.primary{
+      border-color: transparent;
+      background: linear-gradient(135deg, rgba(59,130,246,1), rgba(34,197,94,1));
+      color: #07101f;
+    }
+    .actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top: 14px; }
+    .small{ font-size: 12px; color: var(--soft); line-height: 1.55; margin-top: 10px; }
+    .topbar{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom: 14px; }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <div class="topbar">
+      <a class="btn" href="index.html">← Back</a>
+      <span class="small">Enterprise Society</span>
+    </div>
+
+    <section class="card">
+      <h1>Join / Updates</h1>
+      <p>Get event invites, opportunities, and last-minute announcements.</p>
+
+      <!-- NETLIFY FORMS: works when deployed on Netlify -->
+      <form name="enterprise-signup" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+        <!-- Honeypot (anti-spam) -->
+        <input type="hidden" name="form-name" value="enterprise-signup" />
+        <p style="display:none;">
+          <label>Don’t fill this out: <input name="bot-field" /></label>
+        </p>
+
+        <div class="row">
+          <div>
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" required placeholder="Your name" />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@email.com" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="year">Year of study</label>
+            <select id="year" name="year" required>
+              <option value="" disabled selected>Select…</option>
+              <option>Foundation</option>
+              <option>Year 1</option>
+              <option>Year 2</option>
+              <option>Year 3</option>
+              <option>Postgraduate</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="interest">Main interest</label>
+            <select id="interest" name="interest" required>
+              <option value="" disabled selected>Select…</option>
+              <option>Starting a business</option>
+              <option>Joining a startup</option>
+              <option>Pitching an idea</option>
+              <option>Workshops / skills</option>
+              <option>Networking</option>
+              <option>Investing / VC curiosity</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="note">Anything you’re building / looking for (optional)</label>
+        <textarea id="note" name="note" rows="4" placeholder="E.g. looking for cofounders, learning product, building an app…"></textarea>
+
+        <div class="actions">
+          <button class="btn primary" type="submit">Submit</button>
+          <a class="btn" href="index.html#connect">Other ways to connect</a>
+        </div>
+
+        <p class="small">
+          By submitting, you consent to being contacted about Enterprise Society events and opportunities.
+          We don’t sell your data.
+        </p>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

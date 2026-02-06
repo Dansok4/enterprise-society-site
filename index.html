@@ -1,0 +1,516 @@
+<!-- =========================
+UPDATED index.html
+Includes:
+- Handshake icon (bigger, no blob) + Enterprise Society text
+- Improved background + subtle noise + glass sections
+- About cards are clickable → execution.html / access.html / community.html
+- Event tiles clickable → separate interest form pages
+- Connect section removed
+- Join button goes to signup.html
+========================= -->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enterprise Society | Events & Community</title>
+  <meta name="description" content="Enterprise Society: talks, workshops, pitch nights, and operator meetups at your university." />
+
+  <style>
+    :root{
+      --card: rgba(255,255,255,0.06);
+      --stroke: rgba(255,255,255,0.12);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --soft: rgba(255,255,255,0.56);
+      --accent: #3b82f6;
+      --accent2:#22c55e;
+      --shadow: 0 18px 50px rgba(0,0,0,0.55);
+      --radius: 18px;
+      --max: 1040px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{
+      margin:0; padding:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial;
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(59,130,246,0.18), transparent 55%),
+        radial-gradient(1000px 700px at 85% 15%, rgba(34,197,94,0.14), transparent 60%),
+        linear-gradient(180deg, #0a0f1d 0%, #070b14 60%, #05070d 100%);
+      color: var(--text);
+      scroll-behavior:smooth;
+    }
+    a{ color:inherit; text-decoration:none; }
+
+    /* subtle premium noise */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.02'/%3E%3C/svg%3E");
+      pointer-events:none;
+      z-index:-1;
+    }
+
+    /* NAV */
+    .nav{
+      position: sticky; top:0; z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,15,25,0.65);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .nav-inner{
+      max-width: var(--max); margin:0 auto; padding: 14px 24px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:700;
+      letter-spacing: 0.2px;
+    }
+
+    /* handshake icon bigger + NO blob */
+    .logo{
+      width:40px;
+      height:40px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:none;
+      border:none;
+      box-shadow:none;
+      color: rgba(255,255,255,0.95);
+      flex: 0 0 auto;
+    }
+    .logo svg{
+      width:26px;
+      height:26px;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
+    }
+
+    .navlinks{ display:flex; gap:14px; flex-wrap:wrap; }
+    .navlinks a{
+      color: var(--muted);
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+    }
+    .navlinks a:hover{
+      color: var(--text);
+      border-color: var(--stroke);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 24px; }
+
+    /* HERO */
+    .hero{ padding: 20px 0 10px; }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(30px, 5vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -0.9px;
+    }
+    .badge{
+      display:inline-flex; gap:10px; align-items:center;
+      padding: 8px 12px; border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--stroke);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(59,130,246,0.15);
+    }
+
+    .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin: 14px 0 18px; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.06); }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(59,130,246,1), rgba(34,197,94,1));
+      border-color: transparent;
+      color: #07101f;
+      box-shadow: 0 16px 45px rgba(59,130,246,0.18);
+    }
+    .btn.primary:hover{ transform: translateY(-2px); }
+
+    .hero-media{
+      margin-top: 14px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.03);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .hero-media img{
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display:block;
+      filter: saturate(1.05);
+    }
+    @media (min-width: 820px){
+      .hero-media img{ height: 420px; }
+    }
+    .overlay{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(10,15,29,0.15) 0%, rgba(10,15,29,0.75) 100%),
+        radial-gradient(800px 300px at 50% 20%, rgba(59,130,246,0.18), transparent 60%);
+      pointer-events:none;
+    }
+    .hero-stats{
+      position:absolute; left: 14px; right: 14px; bottom: 14px;
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .chip{
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.28);
+      color: rgba(255,255,255,0.88);
+      font-size: 13px;
+      backdrop-filter: blur(8px);
+    }
+
+    /* SECTIONS */
+    .section{
+      padding: 28px;
+      margin: 30px 0 0;
+      background: rgba(255,255,255,0.02);
+      backdrop-filter: blur(6px);
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between; gap: 12px; flex-wrap:wrap;
+      margin-bottom: 12px;
+    }
+    .section-title h2{
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.4px;
+    }
+    .section-title span{ color: var(--soft); font-size: 13px; }
+
+    .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+
+    /* card base */
+    .card{
+      grid-column: span 12;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+    .three{ grid-column: span 12; }
+    .two{ grid-column: span 12; }
+    @media (min-width: 820px){
+      .three{ grid-column: span 4; }
+      .two{ grid-column: span 6; }
+    }
+
+    .img-card{
+      width:100%;
+      height: 180px;
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.03);
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .img-card img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .img-card .label{
+      position:absolute; left:12px; bottom:12px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.30);
+      color: rgba(255,255,255,0.90);
+      font-size: 13px;
+      backdrop-filter: blur(8px);
+    }
+
+    /* clickable About cards */
+    .link-card{
+      display:block;
+      text-decoration:none;
+      color:inherit;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease;
+    }
+    .link-card:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.06);
+    }
+    .link-card:focus-visible{
+      outline: 3px solid rgba(59,130,246,0.45);
+      outline-offset: 3px;
+      border-radius: var(--radius);
+    }
+
+    /* EVENT TILES (clickable) */
+    .tiles{ display:grid; grid-template-columns: 1fr; gap: 12px; }
+    @media (min-width: 820px){ .tiles{ grid-template-columns: 1fr 1fr; } }
+
+    .tile{
+      display:block;
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.03);
+      overflow:hidden;
+      position: relative;
+      min-height: 140px;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease;
+      text-decoration:none;
+      color: inherit;
+    }
+    .tile:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.04); }
+    .tile:focus-visible{
+      outline: 3px solid rgba(59,130,246,0.45);
+      outline-offset: 3px;
+      border-radius: var(--radius);
+    }
+    .tile .bg{
+      position:absolute; inset:0;
+      background: linear-gradient(135deg, rgba(59,130,246,0.16), rgba(34,197,94,0.10));
+    }
+    .tile .content{
+      position:relative;
+      padding: 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+    }
+    .tile .top{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .pill{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(0,0,0,0.14);
+      color: var(--muted);
+      font-size: 12px;
+      width: fit-content;
+    }
+    .tile h3{ margin:0; font-size: 15px; letter-spacing:-0.2px; }
+    .tile p{ margin:0; color: var(--muted); font-size: 13px; line-height: 1.5; max-width: 62ch; }
+
+    .divider{ height: 1px; background: var(--stroke); margin: 14px 0 0; opacity: .8; }
+    .small{ font-size: 12px; color: var(--soft); line-height: 1.55; }
+
+    .footer{ padding: 26px 0 10px; color: var(--soft); font-size: 12px; }
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <!-- Handshake icon (bigger, no blob) -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 12l4-4a3 3 0 0 1 4 0l1 1" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20 12l-4-4a3 3 0 0 0-4 0l-1 1" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8.5 13.5l1.5-1.5a2 2 0 0 1 3 0l1.5 1.5" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>Enterprise Society</div>
+      </div>
+
+      <div class="navlinks">
+        <a href="about.html">About</a>
+        <a href="#events">Events</a>
+        <a href="#upcoming">Upcoming</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="badge"><span class="dot"></span> Founder-focused community</div>
+      <h1>Build your network.<br/>Ship real progress.</h1>
+
+      <div class="cta-row">
+        <a class="btn primary" href="signup.html">Join / Updates</a>
+        <a class="btn" href="#events">Event formats</a>
+        <a class="btn" href="#upcoming">Next up</a>
+      </div>
+
+      <div class="hero-media">
+        <img src="images/hero.jpg" alt="Enterprise society event" loading="lazy">
+        <div class="overlay" aria-hidden="true"></div>
+        <div class="hero-stats">
+          <span class="chip">Talks</span>
+          <span class="chip">Workshops</span>
+          <span class="chip">Pitch & Feedback</span>
+          <span class="chip">Opportunities</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="section-title">
+        <h2>What we’re about</h2>
+      </div>
+
+      <div class="grid">
+        <a class="card three link-card" href="execution.html" aria-label="Learn more: Execution">
+          <div class="img-card">
+            <img src="images/execution.jpg" alt="Execution" loading="lazy">
+            <div class="label">Execution</div>
+          </div>
+          <p class="small">Less theory. More doing.</p>
+        </a>
+
+        <a class="card three link-card" href="access.html" aria-label="Learn more: Access">
+          <div class="img-card">
+            <img src="images/access.jpg" alt="Access" loading="lazy">
+            <div class="label">Access</div>
+          </div>
+          <p class="small">Founders, operators, mentors.</p>
+        </a>
+
+        <a class="card three link-card" href="community.html" aria-label="Learn more: Community">
+          <div class="img-card">
+            <img src="images/community.jpg" alt="Community" loading="lazy">
+            <div class="label">Community</div>
+          </div>
+          <p class="small">Ambitious people in one room.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="section" id="events">
+      <div class="section-title">
+        <h2>Event formats</h2>
+      </div>
+
+      <div class="tiles">
+        <a class="tile" href="forms-founder.html" aria-label="Interest form: Founder Deep Dives">
+          <div class="bg" aria-hidden="true"></div>
+          <div class="content">
+            <div class="top">
+              <h3>Founder Deep Dives</h3>
+              <span class="pill">Talk</span>
+            </div>
+            <p>Real stories + Q&A. Leave with frameworks you can use.</p>
+          </div>
+        </a>
+
+        <a class="tile" href="forms-mvp.html" aria-label="Interest form: Idea to MVP Sprint">
+          <div class="bg" aria-hidden="true"></div>
+          <div class="content">
+            <div class="top">
+              <h3>Idea → MVP Sprint</h3>
+              <span class="pill">Workshop</span>
+            </div>
+            <p>Hands-on session. Walk out with a clear MVP plan.</p>
+          </div>
+        </a>
+
+        <a class="tile" href="forms-pitch.html" aria-label="Interest form: Pitch & Feedback Night">
+          <div class="bg" aria-hidden="true"></div>
+          <div class="content">
+            <div class="top">
+              <h3>Pitch & Feedback Night</h3>
+              <span class="pill">Pitch</span>
+            </div>
+            <p>Low pressure. High signal feedback + new connections.</p>
+          </div>
+        </a>
+
+        <a class="tile" href="forms-operators.html" aria-label="Interest form: Operator Meetups">
+          <div class="bg" aria-hidden="true"></div>
+          <div class="content">
+            <div class="top">
+              <h3>Operator Meetups</h3>
+              <span class="pill">Network</span>
+            </div>
+            <p>Find teammates: product, marketing, ops, builders.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- UPCOMING -->
+    <section class="section" id="upcoming">
+      <div class="section-title">
+        <h2>Next up</h2>
+      </div>
+
+      <div class="grid">
+        <div class="card two">
+          <div class="img-card" style="height:210px;">
+            <img src="images/upcoming.jpg" alt="Upcoming event" loading="lazy">
+            <div class="label">Upcoming</div>
+          </div>
+
+          <h3 style="margin:0 0 6px; font-size:16px;">Experience Day Collaboration</h3>
+          <p class="small" style="margin:0;">
+            Arrival <strong>9:30am</strong> • Building lead will guide stall allocation
+          </p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="card two">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+            <h3 style="margin:0; font-size:16px;">Flagship: Founder Mixer + Pitch Circle</h3>
+            <span class="pill">Flagship</span>
+          </div>
+
+          <p class="small" style="margin:10px 0 0;">
+            Meet founders & operators, then pitch your idea in small groups for structured feedback.
+          </p>
+
+          <div class="divider"></div>
+
+          <p class="small" style="margin:12px 0 0;">
+            <strong>Date:</strong> TBC • <strong>Location:</strong> TBC • <strong>Doors:</strong> TBC
+          </p>
+
+          <div class="cta-row" style="margin:14px 0 0;">
+            <a class="btn primary" href="signup.html">Register interest</a>
+            <a class="btn" href="forms-pitch.html">Pitch form</a>
+          </div>
+
+          <p class="small" style="margin:10px 0 0;">Limited spaces — sign up to get the invite.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div class="divider"></div>
+      <p style="margin-top:14px;">
+        Enterprise Society • University-affiliated student society<br/>
+        © <span id="year"></span> Enterprise Society
+      </p>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

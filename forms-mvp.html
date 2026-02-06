@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Idea → MVP Sprint | Interest Form</title>
+  <link rel="stylesheet" href="forms-shared.css">
+</head>
+<body>
+  <main class="wrap">
+    <div class="topbar">
+      <a class="btn" href="index.html#events">← Back</a>
+      <span class="pill">Workshop</span>
+    </div>
+
+    <section class="card">
+      <h1>Idea → MVP Sprint</h1>
+      <p>Hands-on session. Leave with a clear MVP plan.</p>
+
+      <form name="interest-idea-mvp-sprint" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+        <input type="hidden" name="form-name" value="interest-idea-mvp-sprint" />
+        <input type="hidden" name="track" value="Idea → MVP Sprint" />
+        <p style="display:none;"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+
+        <div class="row">
+          <div>
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" required placeholder="Your name" />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@email.com" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="stage">Idea stage</label>
+            <select id="stage" name="stage" required>
+              <option value="" disabled selected>Select…</option>
+              <option>Just an idea</option>
+              <option>Validating</option>
+              <option>Building MVP</option>
+              <option>Already launched</option>
+            </select>
+          </div>
+          <div>
+            <label for="focus">Your focus</label>
+            <select id="focus" name="focus" required>
+              <option value="" disabled selected>Select…</option>
+              <option>Product</option>
+              <option>Tech</option>
+              <option>Marketing</option>
+              <option>Ops</option>
+              <option>Business / Sales</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="note">What are you building? (optional)</label>
+        <textarea id="note" name="note" rows="4" placeholder="One sentence is enough."></textarea>
+
+        <div class="actions">
+          <button class="btn primary" type="submit">Submit</button>
+          <a class="btn" href="signup.html">General updates</a>
+        </div>
+
+        <p class="small">By submitting, you consent to be contacted about this workshop and related updates.</p>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
