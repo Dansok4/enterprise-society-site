@@ -1,12 +1,8 @@
 <!-- =========================
 UPDATED index.html
-Includes:
-- Handshake icon (bigger, no blob) + Enterprise Society text
-- Improved background + subtle noise + glass sections
-- About cards are clickable → execution.html / access.html / community.html
-- Event tiles clickable → separate interest form pages
-- Connect section removed
-- Join button goes to signup.html
+Changes requested:
+- Main hero button now links to the University Society membership page (SU join link)
+- Keeps internal signup + sections as secondary CTAs
 ========================= -->
 
 <!doctype html>
@@ -44,7 +40,6 @@ Includes:
     }
     a{ color:inherit; text-decoration:none; }
 
-    /* subtle premium noise */
     body::before{
       content:"";
       position:fixed;
@@ -71,7 +66,6 @@ Includes:
       letter-spacing: 0.2px;
     }
 
-    /* handshake icon bigger + NO blob */
     .logo{
       width:40px;
       height:40px;
@@ -128,7 +122,7 @@ Includes:
       box-shadow: 0 0 0 6px rgba(59,130,246,0.15);
     }
 
-    .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin: 14px 0 18px; }
+    .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin: 14px 0 12px; }
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding: 12px 14px;
@@ -189,6 +183,14 @@ Includes:
       backdrop-filter: blur(8px);
     }
 
+    /* helper text under hero CTA */
+    .helper{
+      margin: 0 0 18px;
+      color: var(--soft);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
     /* SECTIONS */
     .section{
       padding: 28px;
@@ -211,7 +213,6 @@ Includes:
 
     .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
 
-    /* card base */
     .card{
       grid-column: span 12;
       background: rgba(255,255,255,0.05);
@@ -249,7 +250,6 @@ Includes:
       backdrop-filter: blur(8px);
     }
 
-    /* clickable About cards */
     .link-card{
       display:block;
       text-decoration:none;
@@ -267,7 +267,6 @@ Includes:
       border-radius: var(--radius);
     }
 
-    /* EVENT TILES (clickable) */
     .tiles{ display:grid; grid-template-columns: 1fr; gap: 12px; }
     @media (min-width: 820px){ .tiles{ grid-template-columns: 1fr 1fr; } }
 
@@ -326,7 +325,6 @@ Includes:
     <div class="nav-inner">
       <div class="brand">
         <div class="logo" aria-hidden="true">
-          <!-- Handshake icon (bigger, no blob) -->
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M4 12l4-4a3 3 0 0 1 4 0l1 1" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M20 12l-4-4a3 3 0 0 0-4 0l-1 1" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -345,16 +343,27 @@ Includes:
   </div>
 
   <main class="wrap">
-    <!-- HERO -->
     <section class="hero" id="top">
       <div class="badge"><span class="dot"></span> Founder-focused community</div>
       <h1>Build your network.<br/>Ship real progress.</h1>
 
       <div class="cta-row">
-        <a class="btn primary" href="signup.html">Join / Updates</a>
+        <!-- MAIN CTA: SU membership page -->
+        <a
+          class="btn primary"
+          href="https://www.yoursu.org/get-involved/societies/join/6970/"
+          target="_blank"
+          rel="noopener"
+        >Join Enterprise Society</a>
+
         <a class="btn" href="#events">Event formats</a>
         <a class="btn" href="#upcoming">Next up</a>
+        <a class="btn" href="signup.html">Event updates</a>
       </div>
+
+      <p class="helper">
+        Official university society membership is required to attend events. Scan the QR or use the button above to join.
+      </p>
 
       <div class="hero-media">
         <img src="images/hero.jpg" alt="Enterprise society event" loading="lazy">
@@ -368,7 +377,6 @@ Includes:
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section class="section" id="about">
       <div class="section-title">
         <h2>What we’re about</h2>
@@ -401,7 +409,6 @@ Includes:
       </div>
     </section>
 
-    <!-- EVENTS -->
     <section class="section" id="events">
       <div class="section-title">
         <h2>Event formats</h2>
@@ -454,7 +461,6 @@ Includes:
       </div>
     </section>
 
-    <!-- UPCOMING -->
     <section class="section" id="upcoming">
       <div class="section-title">
         <h2>Next up</h2>
